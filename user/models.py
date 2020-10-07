@@ -5,10 +5,10 @@ from django.contrib.auth.models import AbstractUser,Group
 class User(AbstractUser):
     groups = models.ForeignKey(Group,on_delete=models.CASCADE)
     email = models.EmailField(max_length=100, unique=True)
-    is_teacher = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=False)
+    # is_teacher = models.BooleanField(default=False)
+    # is_student = models.BooleanField(default=False)
 
-    REQUIRED_FIELDS = ['groups_id', 'email','is_teacher', 'is_student']
+    REQUIRED_FIELDS = ['groups_id', 'email']
 
     class Meta:
         verbose_name = 'user'
