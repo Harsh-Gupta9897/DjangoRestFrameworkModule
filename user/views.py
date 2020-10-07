@@ -20,7 +20,7 @@ class UserViewSet(ModelViewSet):
     permission_classes = []
     def get_permissions(self):
         permission_classes = []
-        #creation or signup of user 
+        #creation of user 
         if self.action == 'create':
             permission_classes = [IsTeacherorAdmin,]
         #to list all the students and teachers on the basis of permissions
@@ -28,8 +28,8 @@ class UserViewSet(ModelViewSet):
             permission_classes = [IsStudentorAdminorTeacher]
         # to update values by autheticated user 
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [IsStudentorAdminorTeacher]
-        # to destroy of students or anyone by admin
+            permission_classes = [IsTeacherorAdmin]
+        # to destroy the user account of students or teacher by admin
         elif self.action == 'destroy':
             permission_classes = [IsAdmin]
         
@@ -40,13 +40,14 @@ class UserViewSet(ModelViewSet):
         group = self.request.user.groups.id
         print(group)
         if group == 2:
-            print('teacher')
             query =User.objects.filter(groups_id=3)
             return query
 
         if group == 3:
-            return User.objects.get(id=self.request.user.id)
+            return User.objects.filter(pk=self.request.user.id)
 
         if group == 1:
             return User.objects.all()
 
+
+# class SignUpView()
