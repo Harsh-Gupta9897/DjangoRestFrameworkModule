@@ -9,8 +9,8 @@ from rest_framework.permissions import AllowAny
 from user.permission import IsAdmin ,IsStudentorAdminorTeacher, IsTeacherorAdmin,AllowAny
 from user.models import User
 from user.serializers import UserSerializer
-
-
+from rest_framework import status
+#
 # Create your views here.
 
 class UserViewSet(ModelViewSet):
@@ -50,4 +50,28 @@ class UserViewSet(ModelViewSet):
             return User.objects.all()
 
 
-# class SignUpView()
+class SignUpView(APIView):
+    permission_classes = [AllowAny,]
+    def post(self, request):
+        data = request.data
+        username = data['username']
+        email = data['email']
+        password = data['password']
+        confirm_password = data['confirm_password']
+        if User.objects.filter(username=username).exists():
+            return Response({'error':'try different username'},status=status.HTTP_400_BAD_REQUEST)
+        else:
+            if password == confirm_password:
+                if User.objects.filter(email=email).exists():
+                    return Response({'error':'Email Already Exists,try different email address'},status=status.HTTP_400_BAD_REQUEST)
+                
+                else:
+                    if len(password)<6:
+                        return Response({'error':'Password must be at least 6 characters'},status=status.HTTP_400_BAD_REQUEST)
+                    else:
+                        user = User.objects.create_user(email=email, password=password,username=username,groups_id=3)
+                        user.save()
+                        return Response({'success':'User Created successfully'},status=status.HTTP_200_OK)
+
+            else:
+                return Response({'error':'Password does not match'},status=status.HTTP_400_BAD_REQUEST)

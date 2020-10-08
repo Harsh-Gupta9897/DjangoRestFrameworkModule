@@ -19,4 +19,12 @@ class UserSerializer(ModelSerializer):
 
         return user
 
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change .
+    """
+    model = User
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
   

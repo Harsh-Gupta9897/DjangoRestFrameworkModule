@@ -17,11 +17,19 @@ from django.contrib import admin
 from django.urls import path,include
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('user.urls')),
     path('login/',TokenObtainPairView.as_view(),name='token_obtain_pair'),
     path('login/refresh',TokenRefreshView.as_view(),name='token_refresh'),
+    path('api/password_reset/',include('django_rest_passwordreset.urls'),name='password_reset'),
+
+    # endpoints fro password reset are:
+    # - {url}/reset_password/confirm/ provide a valid token
+    # - {url}/reset_password/validate_token/ 
+    
+
 ]
 
 

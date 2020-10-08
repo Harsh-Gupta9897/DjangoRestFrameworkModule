@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #packages
     'rest_framework',
     'rest_framework.authtoken',
+    'django_rest_passwordreset',
+    
+    #apps
     'user',
+
 ]
 
 AUTH_USER_MODEL= 'user.User'
@@ -138,3 +143,12 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=2),
 }
+
+
+#testing email address
+EMAIL_BACKEND=  'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_PORT= 587
+EMAIL_HOST_USER= 'Enter your email here'
+EMAIL_HOST_PASSWORD = 'enter your password here'
+EMAIL_USE_TLS= True
