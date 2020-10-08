@@ -82,12 +82,28 @@ WSGI_APPLICATION = 'internship.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+#development database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+#production database
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'database_name',
+#         'USER': 'user_name',
+#         'PASSWORD': 'password herre....',
+#         'HOST': 'host_name',
+#         'PORT':5432,
+
+#     }
+# }
 
 
 # Password validation
