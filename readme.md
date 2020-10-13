@@ -6,6 +6,9 @@
 4. customized permissions based on groups 
 5. signup module.
 6. Database setup is there 
+7. login module using jwt is there 
+8. token based authentcation is provided.
+
 
 ### database setup
 
@@ -31,7 +34,7 @@ run these commands after opening project
 ##### http://127.0.0.1:8000/api/
 ##### http://127.0.0.1:8000/api/password_reset/
 ##### http://127.0.0.1:8000/signup/
+##### http://127.0.0.1:8000/login/
 
 
-
-intall packages provided in requirements.txt file
+install packages provided in requirements.txt file
